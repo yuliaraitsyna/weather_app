@@ -7,7 +7,7 @@ const GetCustomLocation = () => {
     return city;
 }
 
-const options = {
+/*const options = {
     enableHighAccuracy: true,
     timeout: 10000, // Increased timeout to 10 seconds
     maximumAge: 0,
@@ -21,7 +21,7 @@ function error(err) {
     console.warn(`ERROR(${err.code}): ${err.message}`);
     // Provide feedback to the user if geolocation retrieval fails
     // For example, display an error message on the UI
-}
+}*/
 
 const GetCurrentLocation = () => {
     /*return new Promise((resolve, reject) => {

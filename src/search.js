@@ -1,4 +1,5 @@
 import {GetCurrentLocation, GetCustomLocation} from './location'
+import GetImage from './img'
 const CALL_TYPE = {
     CURRENT: 0,
     CUSTOM: 1,
@@ -82,28 +83,41 @@ async function GetData(call_type) {
 }
 
 
-const SetData = (data) => {
+const SetData = async (dayData, weekData) => {
 
     const weatherTypeImg = document.querySelector('.weather-type-img')
-    weatherTypeImg.src = data.current.condition.icon
+    weatherTypeImg.src = dayData.current.condition.icon
 
     const weatherTypeText = document.querySelector('.weather-type-text')
-    weatherTypeText.textContent = data.current.condition.text
+    weatherTypeText.textContent = dayData.current.condition.text
 
     const weatherTempC = document.querySelector('.weather-temp-c')
-    weatherTempC.textContent = data.current.temp_c
+    weatherTempC.textContent = dayData.current.temp_c
 
     const weatherTempF = document.querySelector('.weather-temp-f')
-    weatherTempF.textContent = data.current.temp_f
+    weatherTempF.textContent = dayData.current.temp_f
 
     const weatherHumidity = document.querySelector('.weather-humidity')
-    weatherHumidity.textContent = data.current.humidity
+    weatherHumidity.textContent = dayData.current.humidity
 
     const weatherWind = document.querySelector('.weather-wind-speed')
-    weatherWind.textContent = data.current.wind_kph
+    weatherWind.textContent = dayData.current.wind_kph
 
+    const weatherImg = document.querySelector('.weather-type-img')
+    const code = await dayData.current.condition.code
+    weatherImg.src = '../src/day/' + GetImage(code) 
     //array of days
     //setting data with for including temperature and weather type img
+    const days = document.querySelectorAll('.day-div')
+    days.forEach(async (day, index) => {
+        const tempElement = day.querySelector('.temp_c')
+        const text = await weekData.forecast.forecastday[index].day.avgtemp_c
+        tempElement.textContent = text
+        const imgElement = day.querySelector('.weather_condition')
+        const code = await weekData.forecast.forecastday[index].day.condition.code
+        imgElement.src = '../src/day/' + GetImage(code) 
+    } )
+
 }
 export {
     CALL_TYPE,

@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded',async () => {
     try {
         const dayData = await GetData(CALL_TYPE.CURRENT)
         const weekData = await GetData(CALL_TYPE.WEEK_CURRENT)
-        SetData(dayData);
+        SetData(dayData, weekData);
     } catch (error) {
         console.error('Error:', error)
     }
@@ -18,7 +18,7 @@ searchButton.addEventListener('click', async () => {
     try {
         const dayData = await GetData(CALL_TYPE.CUSTOM)
         const weekData = await GetData(CALL_TYPE.WEEK_CUSTOM)
-        SetData(dayData);
+        SetData(dayData, weekData);
     } catch (error) {
         console.error('Error:', error)
     }

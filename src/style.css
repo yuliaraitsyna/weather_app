@@ -4,61 +4,53 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Libre+Franklin:ital,wght@0,300;1,900&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Yanone+Kaffeesatz:wght@200..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Libre+Franklin:ital,wght@0,300;1,900&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Public+Sans:ital,wght@0,100..900;1,100..900&family=Yanone+Kaffeesatz:wght@200..700&display=swap');
+
 html {
     background-color: black;
-    overflow: scroll;
-    background-size: cover;
-    background-repeat: no-repeat;
+    background: url(./img/background.jpg);
     margin:0;
 }
+
 body {
+    height: 85vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    gap:15vh;
-    border:solid red 1px;
+    justify-content: space-around;
 }
+
 h1 {
     color:white;
-    position: fixed;
-    background-position: 0 0;
     margin: 0;
     font-family: "Libre Franklin", sans-serif;
+    z-index: 1;
+    float: top;
+    margin-left: 5%;
+    font-size: 5vh;
 }
-.week-container{
+
+.week-container {
     display: inline-flex;
     justify-content: space-between;
     align-self: center;
     width:90vw;
-    border:solid red 1px;
 }
+
 .day-div {
     display:table-cell;
     background-color: var(--opacity-color);
-    border-radius: 5%;
+    border-radius: 7%;
     width:10vw;
     max-width: 200px;
-    aspect-ratio: 1/1;
+    height: 10vw;
+    max-height: 200px;
     color:white;
     font-size: calc(10vw/10);
     padding:3px;
     text-align: right;
     font-family: "Public Sans", sans-serif;
+    box-shadow: inset -2px -2px 5px rgba(255, 255, 255, 0.468);
 }
-.today-div{
-    margin-top:10vw;
-    font-family: "Public Sans", sans-serif;
-    background-color: var(--opacity-color);
-    color:black;
-    width:40vw;
-    aspect-ratio: 1 / 1;
-    max-width: 400px;
-    align-self: center;
-    font-size: calc(40vw/12);
-    color:white;
-    border-radius:5%;
-    padding:10px;
-}
+
 .searchbar {
     display: flex;
     justify-content: space-between;
@@ -72,10 +64,12 @@ h1 {
     align-self: flex-end;
     margin-right: 10px;
     padding:5px;
-    position: fixed;
-    background-position: 85vw 0;
+    z-index: 1;
+    float: top;
+    box-shadow: inset -2px -2px 10px rgba(255, 255, 255, 0.468);
 }
-input[type="search"]{
+
+input[type="search"] {
     background-color: transparent;
     border: none;
     outline: none;
@@ -84,60 +78,116 @@ input[type="search"]{
     height: 20px;
     color:white;
 }
-input[type="search"]::-webkit-input-placeholder{
+
+input[type="search"]::-webkit-input-placeholder {
     color:white;
 }
-button[type="submit"]{
+
+button[type="submit"] {
     border:none;
     background-color: transparent;
     width:15px;
     height:15px;
     margin-right: 10px;
-    background: url(./img/search\ \(2\).png) no-repeat;
+    background: url(./img/search.png) no-repeat;
     background-size: contain;
 }
 
-
 #today {
     display: flex;
+    align-self: center;
     flex-direction: column;
-    justify-content: flex-start;
+    height:45vw;
+    width: 45vw;
+    max-height: 400px;
+    max-width: 400px;
+    font-family: "Public Sans", sans-serif;
+    color:white;
+    background-color: var(--opacity-color);
+    border-radius: 5%;
+    border: none;
+    box-shadow: inset -2px -2px 10px rgba(255, 255, 255, 0.468);
 }
-p {
-    font-size: 20px;
-    width:90%;
+
+#div-header {
+    font-size: calc(40vh / 15);
+    height:10%;
+    margin:0%;
+    padding:5%;
 }
+
 .weather-container {
-    display:inline-flex;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 90%;
+    width: 100%;
+}
+
+.condition-container {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    
+    width:50%;
+    height:100%;
 }
-.weather-type-img {
+
+.condition-container > p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size:90%;
     width:100%;
-    height:80%;
+    height:10%;
 }
+
 .weather-info {
-    width:100%;
-    height:80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap:9%;
+    width:fit-content;
+    height:100%;
 }
-p{
+
+.weather-info > p {
+    margin: 0%;
     display: flex;
     align-items: center;
-    
+    font-size:90%;
+    width:100%;
+    height:10%;
 }
-.weather-temp-c::before{
+
+.weather-temp-c::before {
     content: url('./img/celsius.png');
     margin-right: 10px;
 }
-.weather-temp-f::before{
-    content: url('./img/fahrenheit\ \(1\).png');
+
+.weather-temp-f::before {
+    content: url('./img/fahrenheit.png');
     margin-right: 10px;
 }
-.weather-humidity::before{
+
+.weather-humidity::before {
     content: url('./img/humidity.png');
     margin-right: 10px;
 }
-.weather-wind-speed::before{
+
+.weather-wind-speed::before {
     content: url('./img/wind.png');
     margin-right: 10px;
+}
+
+.weather_condition {
+    width: calc(100vw / 20);
+    aspect-ratio: 1 / 1;
+}
+
+.temp_c {
+    width:100%;
+    height:25%;
+    font-size: 100%;
+    text-align: center;
+    margin-top: 20%;
 }
