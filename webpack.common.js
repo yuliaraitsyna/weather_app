@@ -5,17 +5,10 @@ module.exports = {
     entry: {
         index: './src/index.js',
     },
-    devtool: 'inline-source-map',
-    devServer: {
-        static: './dist',
-    },
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
         clean: true,
-    },
-    optimization: {
-        runtimeChunk: 'single',
     },
     plugins: [
         new HTMLWebpackPlugin({
@@ -31,7 +24,7 @@ module.exports = {
                 use: ['style-loader', 'css-loader'],
             },
             {
-                test: /\.png$/i,
+                test: /\.(png|jpg|jpeg)$/i,
                 type: 'asset/resource',
             },
             {

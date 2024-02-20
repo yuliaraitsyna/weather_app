@@ -1,5 +1,5 @@
 import {GetCurrentLocation, GetCustomLocation} from './location'
-import GetImage from './img'
+
 const CALL_TYPE = {
     CURRENT: 0,
     CUSTOM: 1,
@@ -16,10 +16,6 @@ const GetAPI_url = (location, is_week) => {
     return `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}`
 }
 
-/*function Geocode_url(latitude, longitude, apiKey) {
-    return `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiKey}`;
-}*/
-
 async function GetData(call_type) {
     try {
         let url
@@ -29,20 +25,6 @@ async function GetData(call_type) {
                 console.log("Current location call")
                 location = GetCurrentLocation()
                 url = GetAPI_url(location, false)
-                    /*.then(async (coordinates) => {
-                        let latitude = coordinates.latitude
-                        let longitude = coordinates.longitude
-                        let google_url = Geocode_url(latitude, longitude, apiKey)
-                        const response = await fetch(google_url)
-                        if(!response.ok) {
-                            throw new Error('Google API respose was not ok')
-                        }
-                        const data = await response.json()
-                        console.log(data)
-                    })
-                    .catch(error => {
-                        console.error('Error:', error.message)
-                    })*/
                 break;
 
             case CALL_TYPE.CUSTOM:
@@ -78,7 +60,6 @@ async function GetData(call_type) {
     }
     catch (error) {
         console.error('Error:', error)
-        //show error message under the searchbar
     }
 }
 
@@ -104,21 +85,21 @@ const SetData = async (dayData, weekData) => {
     weatherWind.textContent = dayData.current.wind_kph
 
     const weatherImg = document.querySelector('.weather-type-img')
-    const code = await dayData.current.condition.code
-    weatherImg.src = '../src/img/' + GetImage(code) 
-    //array of days
-    //setting data with for including temperature and weather type img
+    const img = await dayData.current.condition.icon
+    weatherImg.src = img 
+
     const days = document.querySelectorAll('.day-div')
     days.forEach(async (day, index) => {
         const tempElement = day.querySelector('.temp_c')
         const text = await weekData.forecast.forecastday[index].day.avgtemp_c
         tempElement.textContent = text
         const imgElement = day.querySelector('.weather_condition')
-        const code = await weekData.forecast.forecastday[index].day.condition.code
-        imgElement.src = '../src/img/' + GetImage(code) 
+        const img = await weekData.forecast.forecastday[index].day.condition.icon
+        imgElement.src = img
     } )
 
 }
+
 export {
     CALL_TYPE,
     GetData,
