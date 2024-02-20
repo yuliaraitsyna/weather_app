@@ -105,7 +105,7 @@ const SetData = async (dayData, weekData) => {
 
     const weatherImg = document.querySelector('.weather-type-img')
     const code = await dayData.current.condition.code
-    weatherImg.src = '../src/day/' + GetImage(code) 
+    weatherImg.src = './img/day/' + GetImage(code) 
     //array of days
     //setting data with for including temperature and weather type img
     const days = document.querySelectorAll('.day-div')
@@ -115,7 +115,7 @@ const SetData = async (dayData, weekData) => {
         tempElement.textContent = text
         const imgElement = day.querySelector('.weather_condition')
         const code = await weekData.forecast.forecastday[index].day.condition.code
-        imgElement.src = '../src/day/' + GetImage(code) 
+        imgElement.src = './img/day/' + GetImage(code) 
     } )
 
 }
